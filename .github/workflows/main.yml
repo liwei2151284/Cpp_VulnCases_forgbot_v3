@@ -1,9 +1,6 @@
 name: "Frogbot Scan Repository"
 on:
   workflow_dispatch:
-  schedule:
-    # The repository will be scanned once a day at 00:00 GMT.
-    - cron: "0 0 * * *"
   push:
     branches:
       - main
@@ -30,10 +27,7 @@ jobs:
        # with:
        #   version: 3.4.2
         env:
-          JF_URL: ${{ secrets.JF_URL }}
-          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-          JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          JF_GIT_BASE_BRANCH: ${{ matrix.branch }}
-        # with:
-          # oidc-provider-name: <OIDC_PROVIDER_NAME>
-          # JF_SAST_DEFAULT_SCAN_MODE: "file"
+          JF_URL: "https://${{ secrets.JF_URL }}"
+        with:
+          oidc-provider-name: liwei-github-oidc 
+          oidc-audience: jfrog-github
