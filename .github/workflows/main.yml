@@ -28,6 +28,7 @@ jobs:
        #   version: 3.4.2
         env:
           JF_URL: "https://solenglatest.jfrog.io"
+          JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           oidc-provider-name: liwei-github-oidc 
           oidc-audience: jfrog-github
