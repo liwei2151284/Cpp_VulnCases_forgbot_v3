@@ -1,6 +1,9 @@
 name: "Frogbot Scan Repository"
 on:
   workflow_dispatch:
+  schedule:
+    # The repository will be scanned once a day at 00:00 GMT.
+    - cron: "0 0 * * *"
   push:
     branches:
       - main
@@ -29,6 +32,7 @@ jobs:
         env:
           JF_URL: "https://solenglatest.jfrog.io"
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JF_GIT_BASE_BRANCH: ${{ matrix.branch }}
         with:
           oidc-provider-name: liwei-github-oidc 
           oidc-audience: jfrog-github
