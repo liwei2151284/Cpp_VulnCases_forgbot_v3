@@ -27,8 +27,8 @@ jobs:
           ref: ${{ matrix.branch }}
 
       - uses: jfrog/frogbot@v3
-       # with:
-       #   version: 3.4.2
+        with:
+          version: 3.8.0
         env:
           JF_URL: "https://solenglatest.jfrog.io"
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
