@@ -67,19 +67,18 @@ jobs:
 
           echo ""
           echo "[7] C/C++ Source Files:"
+          
           find . -type f \
             \( -name "*.c" -o -name "*.cpp" \
             -o -name "*.cc" -o -name "*.h" \
             -o -name "*.hpp" \) \
-            -not -path "./.git/*" | head -50
-
+            -not -path "./.git/*" > /tmp/cpp-files.txt
+          
+          sed -n '1,50p' /tmp/cpp-files.txt
+          
           echo ""
           echo "[8] Source File Count:"
-          find . -type f \
-            \( -name "*.c" -o -name "*.cpp" \
-            -o -name "*.cc" -o -name "*.h" \
-            -o -name "*.hpp" \) \
-            -not -path "./.git/*" | wc -l
+          wc -l < /tmp/cpp-files.txt
 
           echo ""
           echo "Repository verification completed."
