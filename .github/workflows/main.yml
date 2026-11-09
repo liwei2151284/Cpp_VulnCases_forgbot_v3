@@ -41,10 +41,10 @@ jobs:
           JF_GIT_BASE_BRANCH: ${{ matrix.branch }}
 
           # 使用本地已下载的 Git 仓库
-          JF_USE_LOCAL_REPOSITORY: "true"
+          #JF_USE_LOCAL_REPOSITORY: "true"
 
           # DEBUG 日志
-          JFROG_CLI_LOG_LEVEL: "DEBUG"
+          #JFROG_CLI_LOG_LEVEL: "DEBUG"
 
         with:
           #soleng
