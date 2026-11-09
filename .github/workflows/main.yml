@@ -30,64 +30,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ matrix.branch }}
-
-      # 2. 验证本地代码
-      - name: Verify Local Repository
-        shell: bash
-        run: |
-          set -e
-
-          echo "========================================"
-          echo "       Local Repository Verification"
-          echo "========================================"
-
-          echo ""
-          echo "[1] Current Working Directory:"
-          pwd
-
-          echo ""
-          echo "[2] Git Repository Root:"
-          git rev-parse --show-toplevel
-
-          echo ""
-          echo "[3] Current Branch:"
-          git branch --show-current
-
-          echo ""
-          echo "[4] Latest Commit:"
-          git log -1 --oneline
-
-          echo ""
-          echo "[5] Git Status:"
-          git status --short
-
-          echo ""
-          echo "[6] Repository Files:"
-          ls -lah
-
-          echo ""
-          echo "[7] C/C++ Source Files:"
           
-          find . -type f \
-            \( -name "*.c" -o -name "*.cpp" \
-            -o -name "*.cc" -o -name "*.h" \
-            -o -name "*.hpp" \) \
-            -not -path "./.git/*" > /tmp/cpp-files.txt
-          
-          sed -n '1,50p' /tmp/cpp-files.txt
-          
-          echo ""
-          echo "[8] Source File Count:"
-          wc -l < /tmp/cpp-files.txt
-
-          echo ""
-          echo "Repository verification completed."
-
       # 3. Frogbot V3 扫描本地代码
       - name: Frogbot Scan Repository
         uses: jfrog/frogbot@v3
         env:
-          JF_URL: "https://solenglatest.jfrog.io"
+          JF_URL: "https://soleng.jfrog.io"
+          #JF_URL: "https://solenglatest.jfrog.io" 
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JF_GIT_BASE_BRANCH: ${{ matrix.branch }}
 
@@ -98,5 +47,9 @@ jobs:
           JFROG_CLI_LOG_LEVEL: "DEBUG"
 
         with:
+          #soleng
           oidc-provider-name: liwei-github-oidc
           oidc-audience: jfrog-github
+          #solenglatest
+          #oidc-provider-name: liwei-github-oidc
+          #oidc-audience: jfrog-github
