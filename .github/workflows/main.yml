@@ -36,7 +36,8 @@ jobs:
         uses: jfrog/frogbot@v3
         env:
           #JF_URL: "https://soleng.jfrog.io"
-          JF_URL: "https://solenglatest.jfrog.io" 
+          #JF_URL: "https://solenglatest.jfrog.io" 
+          JF_URL: "https://demo.jfrogchina.com" 
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JF_GIT_BASE_BRANCH: ${{ matrix.branch }}
 
@@ -47,9 +48,5 @@ jobs:
           #JFROG_CLI_LOG_LEVEL: "DEBUG"
 
         with:
-          #soleng
-          #oidc-provider-name: liwei-github-oidc
-          #oidc-audience: jfrog-github
-          #solenglatest
           oidc-provider-name: liwei-github-oidc
           oidc-audience: jfrog-github
